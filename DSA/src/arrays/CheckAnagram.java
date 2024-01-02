@@ -57,12 +57,40 @@ public class CheckAnagram {
         return true;
     }
 
+    // approach 2
+    public static boolean areAnagram(String s, String t) {
+        final int[] map = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            map[s.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < t.length(); i++) {
+            map[t.charAt(i) - 'a']--;
+        }
+
+        for (int element : map) {
+            if (element != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
         final String str1 = "listen";
         final String str2 = "silent";
 
-        // Function Call
+        // approach 1
         if (isAnagram(str1.toCharArray(), str2.toCharArray())) {
+            System.out.println("Anagram");
+        } else {
+            System.out.println("Not Anagram");
+        }
+
+        // approach 2 (Good Approach)
+        if (areAnagram(str1, str2)) {
             System.out.println("Anagram");
         } else {
             System.out.println("Not Anagram");
